@@ -1,0 +1,1 @@
+#sys-libs/glibc -multiarch -multilib -realign -static-libs

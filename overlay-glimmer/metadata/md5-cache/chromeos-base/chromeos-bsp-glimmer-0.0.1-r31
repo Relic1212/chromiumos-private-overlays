@@ -1,0 +1,11 @@
+DEFINED_PHASES=install
+DEPEND=chromeos-base/chromeos-accelerometer-init chromeos-base/chromeos-touch-config-glimmer
+DESCRIPTION=Glimmer private bsp (meta package to pull in driver/tool deps)
+EAPI=4
+IUSE=glimmer-cheets
+KEYWORDS=-* amd64 x86
+LICENSE=BSD-Google
+RDEPEND=chromeos-base/chromeos-accelerometer-init chromeos-base/chromeos-touch-config-glimmer
+SLOT=0
+_eclasses_=appid	7246d2a9f30b76802a858973725910c7	cros-audio-configs	3019de51dffbb1b14f1f5d01141fb95e
+_md5_=005ec79ba9cc6f30ef8cc76ec1b0c057

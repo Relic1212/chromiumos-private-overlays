@@ -1,0 +1,8 @@
+USE="${USE} -touchview tablet_form_factor webui-tab-strip touch_centric_device "
+
+# USE="${USE} touchscreen_wakeup " # Only for chromeboxes
+USE="${USE} -gbm "
+
+# edge_touch_filtering?
+# tablet-kukui?
+#touch_centric_device?

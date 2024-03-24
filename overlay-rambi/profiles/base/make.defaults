@@ -1,0 +1,32 @@
+# Copyright 2019 The ChromiumOS Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+# Initial value just for style purposes.
+LINUX_FIRMWARE=""
+USE=""
+
+LINUX_FIRMWARE="${LINUX_FIRMWARE} iwlwifi-7260 ibt-hw fw_sst"
+
+USE="${USE} cros_ec"
+
+# Enable iwlwifi remove/rescan PCI reliability workaround.
+USE="${USE} iwlwifi_rescan"
+
+USE="${USE} rambi"
+
+# Disable unibuild on this legacy board. This is only for existing (as of Jan 2019)
+# boards as all new boards must be unibuild enabled moving forward. Do not copy this
+# to new boards as it will be rejected. See
+# https://chromium.googlesource.com/chromiumos/platform2/+/HEAD/chromeos-config/README.md
+# for further details about chromeos-config, which is the required entry point for
+# unified builds.
+USE="${USE} -unibuild"
+
+EC_FIRMWARE="rambi"
+
+# Uncomment this line to activate the serial port.
+#TTY_CONSOLE="ttyS0"
+
+# Enable eMMC tools
+USE="${USE} mmc"
