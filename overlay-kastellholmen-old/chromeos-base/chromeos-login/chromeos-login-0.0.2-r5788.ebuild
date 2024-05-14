@@ -3,6 +3,8 @@
 
 EAPI=7
 
+CROS_WORKON_COMMIT="e48ad173a8849bb4f05206e030b818363bc6d8b5"
+CROS_WORKON_TREE=("874585cec1956489988d3d144fab5b49e3b1aaf8" "26e131fe56975cf86ec923b130f50e8d1bd465ac" "dd06490dae2504baa92f74398419464a71bdee9c" "0e2e8468d1a663b7af9ead8a1c7fe0f85ff15016" "083569b82e5bcbfefd8700a2cd52ea619e712f7a" "2cb16da3a36ad9d5501d85fad9626d87b6093e11" "22713d4b26f3d0e94389c1b09daffdf4a19b7521" "d87a5ef6d075a6ba047883ce105cc7903d02a01a" "f91b6afd5f2ae04ee9a2c19109a3a4a36f7659e6")
 CROS_WORKON_INCREMENTAL_BUILD=1
 CROS_WORKON_LOCALNAME="platform2"
 CROS_WORKON_PROJECT="chromiumos/platform2"
@@ -23,7 +25,7 @@ HOMEPAGE="https://chromium.googlesource.com/chromiumos/platform2/+/HEAD/login_ma
 SRC_URI=""
 
 LICENSE="BSD-Google"
-KEYWORDS="~*"
+KEYWORDS="*"
 IUSE="apply_landlock_policy arc_adb_sideloading cheets flex_id fuzzer
 	+apply_landlock_policy +login_apply_no_new_privs login_enable_crosh_sudo systemd test
 	user_session_isolation"
@@ -34,9 +36,9 @@ COMMON_DEPEND="chromeos-base/bootstat:=
 	chromeos-base/cryptohome:=
 	chromeos-base/libchromeos-ui:=
 	chromeos-base/libcontainer:=
-	chromeos-base/libcrossystem:=[test?]
+	chromeos-base/libcrossystem:=
 	chromeos-base/libpasswordprovider:=
-	chromeos-base/libsegmentation:=[test?]
+	chromeos-base/libsegmentation:=
 	>=chromeos-base/metrics-0.0.1-r3152:=
 	chromeos-base/vpd:=
 	dev-libs/nspr:=
@@ -67,6 +69,9 @@ BDEPEND="
 	app-crypt/nss
 	chromeos-base/chromeos-dbus-bindings
 "
+PATCHES=(
+	"${FILESDIR}/001-no-devflags.patch"
+)
 
 pkg_preinst() {
 	enewgroup policy-readers
@@ -97,17 +102,6 @@ platform_pkg_test() {
 src_install() {
 	platform_src_install
 
-	into /
-	dosbin "${OUT}/keygen"
-	dosbin "${OUT}/session_manager"
-
-	# Install DBus configuration.
-	insinto /usr/share/dbus-1/interfaces
-	doins dbus_bindings/org.chromium.SessionManagerInterface.xml
-
-	insinto /etc/dbus-1/system.d
-	doins SessionManager.conf
-
 	# Adding init scripts.
 	if use systemd; then
 		systemd_dounit init/systemd/*
@@ -119,12 +113,7 @@ src_install() {
 		systemd_enable_service login-prompt-visible.target ui-init-late.service
 		systemd_enable_service start-user-session.target login.service
 		systemd_enable_service system-services.target ui-collect-machine-info.service
-	else
-		insinto /etc/init
-		doins init/upstart/*.conf
 	fi
-	exeinto /usr/share/cros/init/
-	doexe init/scripts/*
 
 	dotmpfiles tmpfiles.d/chromeos-login.conf
 
@@ -138,12 +127,6 @@ src_install() {
 	dodir /etc/skel/.pki/nssdb
 	# Yes, the created (empty) DB does work on ARM, x86 and x86_64.
 	certutil -N -d "sql:${D}/etc/skel/.pki/nssdb" -f <(echo '') || die
-
-	#insinto /etc
-	#doins chrome_dev.conf
-
-	insinto /usr/share/power_manager
-	doins powerd_prefs/suspend_freezer_deps_*
 
 	# Create daemon store directories.
 	local daemon_store="/etc/daemon-store/session_manager"

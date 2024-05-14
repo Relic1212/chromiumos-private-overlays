@@ -1,0 +1,45 @@
+
+
+Some useful commands:
+
+cros build-packages --board="${BOARD}" --jobs=16 --no-withautotest --verbose 
+
+cros build-packages --board="${BOARD}" --jobs=16 --no-withautotest --verbose --skip-chroot-upgrade --skip-toolchain-update
+
+cros build-packages --board="${BOARD}" --jobs=16 --no-withautotest --no-withdebug --verbose --skip-chroot-upgrade --skip-toolchain-update
+
+cros build-packages --board="${BOARD}" --jobs=32 --no-withautotest --verbose --no-withdebug --skip-chroot-upgrade --skip-toolchain-update
+
+
+The devserver does not work. Try getting it back with these:
+
+https://chromium.googlesource.com/chromiumos/chromite/+/17fcbc7f155af78fe93f563eab1a81ce0a398692/lib/cros_update_logging.py
+
+
+Touch
+
+Kukui has "mosys_platform_kukui"
+
+CreateVaultKeysetRpcImpl ??
+
+EncryptAndSaveKeyset ??
+
+UserDataAuth
+dbus-send --system --type=method_call --print-reply  --dest=org.chromium.UserDataAuth /org/chromium/UserDataAuth GetAccountDiskUsage 
+
+dbus-send --system --type=method_call --print-reply  --dest=org.chromium.UserDataAuth /org/chromium/UserDataAuth org.chromium.UserDataAuthInterface.IsMounted 
+
+
+dbus-monitor --system "path=/org/chromium/SessionManager"
+
+dbus-monitor --system "path=/org/chromium/UserDataAuth"
+
+=org.chromium.UserDataAuthInterface; member=PreparePersistentVault
+CreatePersistentUser
+
+dbus-send --system --type=method_call --print-reply \
+      --dest=org.chromium.AuthPolicy /org/chromium/AuthPolicy \
+      "org.chromium.AuthPolicy.GetDefaultLogLevel" 
+
+
+maybe i can skip --login-manger, pass --user-profile/--

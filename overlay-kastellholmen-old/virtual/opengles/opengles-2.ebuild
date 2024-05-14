@@ -1,4 +1,4 @@
-# Copyright 2022 The ChromiumOS Authors
+# Copyright 2019 The ChromiumOS Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
@@ -10,5 +10,5 @@ SLOT="0"
 KEYWORDS="*"
 IUSE=""
 
-RDEPEND="media-libs/mesa-reven[egl,gles2]"
-DEPEND=""
+DEPEND="media-libs/mesa-reven[egl,gles2]"
+RDEPEND="${DEPEND}"

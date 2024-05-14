@@ -1,0 +1,12 @@
+diff --git a/login_manager/BUILD.gn b/login_manager/BUILD.gn
+index 50a52d2..0d5ec55 100644
+--- a/BUILD.gn
++++ b/BUILD.gn
+@@ -191,6 +191,7 @@ install_config("install_dbus_interface") {
+ 
+ install_config("install_dev_conf") {
+   sources = [ "chrome_dev.conf" ]
++  outputs = [ "chrome_dev_original.conf"]
+   install_path = "/etc"
+ }
+ 

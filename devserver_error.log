@@ -1,0 +1,68 @@
+KeyError: 'appid'
+[19/Dec/2023:11:09:29] HTTP 
+Request Headers:
+  Remote-Addr: ::ffff:192.168.1.96
+  HOST: 192.168.1.47:8080
+  ACCEPT: */*
+  X-GOOG-UPDATE-APPID: {C924E0C4-AF80-4B6B-A6F0-DD75EDBCC37C}
+  X-GOOG-UPDATE-INTERACTIVITY: fg
+  X-GOOG-UPDATE-UPDATER: ChromeOSUpdateEngine-0.1.0.0
+  Content-Type: text/xml
+  Content-Length: 669
+INFO:cherrypy.error.140460402393632:[19/Dec/2023:11:09:29] HTTP 
+Request Headers:
+  Remote-Addr: ::ffff:192.168.1.96
+  HOST: 192.168.1.47:8080
+  ACCEPT: */*
+  X-GOOG-UPDATE-APPID: {C924E0C4-AF80-4B6B-A6F0-DD75EDBCC37C}
+  X-GOOG-UPDATE-INTERACTIVITY: fg
+  X-GOOG-UPDATE-UPDATER: ChromeOSUpdateEngine-0.1.0.0
+  Content-Type: text/xml
+  Content-Length: 669
+::ffff:192.168.1.96 - - [19/Dec/2023:11:09:29] "POST /update HTTP/1.1" 500 1938 "" ""
+INFO:cherrypy.access.140460402393632:::ffff:192.168.1.96 - - [19/Dec/2023:11:09:29] "POST /update HTTP/1.1" 500 1938 "" ""
+::ffff:192.168.1.96 - - [19/Dec/2023:11:09:29] "POST /update HTTP/1.1" 200 254 "" ""
+INFO:cherrypy.access.140460402393632:::ffff:192.168.1.96 - - [19/Dec/2023:11:09:29] "POST /update HTTP/1.1" 200 254 "" ""
+WARNING:root:Using base image as test and dev images were not found. This will likely cause cros flash to fail leading to needing to repair the device with a USB stick.
+ERROR:root:Failed to read app data from partition_vars.json ('appid')
+[19/Dec/2023:11:09:30] HTTP 
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/site-packages/cherrypy/_cprequest.py", line 630, in respond
+    self._do_respond(path_info)
+  File "/usr/lib/python3.8/site-packages/cherrypy/_cprequest.py", line 689, in _do_respond
+    response.body = self.handler()
+  File "/usr/lib/python3.8/site-packages/cherrypy/lib/encoding.py", line 221, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+  File "/usr/lib/python3.8/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+  File "/usr/bin/start_devserver", line 1221, in update
+    return updater.HandleUpdatePing(data, label, **kwargs)
+  File "/usr/lib64/devserver/autoupdate.py", line 161, in HandleUpdatePing
+    update_app_index=nebraska.AppIndex(local_payload_dir),
+  File "/usr/lib64/devserver/nebraska.py", line 663, in __init__
+    self._Scan()
+  File "/usr/lib64/devserver/nebraska.py", line 681, in _Scan
+    app = AppIndex.AppData(metadata)
+  File "/usr/lib64/devserver/nebraska.py", line 823, in __init__
+    self.appid = app_data[self.APPID_KEY]
+KeyError: 'appid'
+ERROR:cherrypy.error.140460402393632:[19/Dec/2023:11:09:30] HTTP 
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/site-packages/cherrypy/_cprequest.py", line 630, in respond
+    self._do_respond(path_info)
+  File "/usr/lib/python3.8/site-packages/cherrypy/_cprequest.py", line 689, in _do_respond
+    response.body = self.handler()
+  File "/usr/lib/python3.8/site-packages/cherrypy/lib/encoding.py", line 221, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+  File "/usr/lib/python3.8/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+  File "/usr/bin/start_devserver", line 1221, in update
+    return updater.HandleUpdatePing(data, label, **kwargs)
+  File "/usr/lib64/devserver/autoupdate.py", line 161, in HandleUpdatePing
+    update_app_index=nebraska.AppIndex(local_payload_dir),
+  File "/usr/lib64/devserver/nebraska.py", line 663, in __init__
+    self._Scan()
+  File "/usr/lib64/devserver/nebraska.py", line 681, in _Scan
+    app = AppIndex.AppData(metadata)
+  File "/usr/lib64/devserver/nebraska.py", line 823, in __init__
+    self.appid = app_data[self.APPID_KEY]

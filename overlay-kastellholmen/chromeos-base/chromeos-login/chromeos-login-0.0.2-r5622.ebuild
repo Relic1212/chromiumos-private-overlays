@@ -3,6 +3,8 @@
 
 EAPI=7
 
+CROS_WORKON_COMMIT="23d10a0e5b1b5f811c01b525a8baca8972a80668"
+CROS_WORKON_TREE=("69c015601d8339d40e7f1475df209213302e6f50" "6817a5d9b16fd78d1a797af5707e78a78c0d306f" "9689403dd0a7e59483c0e4a3453d77d6d7a88ef4" "7f3b3b01a5e0579ccc6272030ea26e45c3bc3140" "083569b82e5bcbfefd8700a2cd52ea619e712f7a" "11c5df8f1db516ebc288b9fae7eb94c6f4f2fba5" "8adb9a74916ac2b242f3ece9595936895ddeead1" "5905eb65b7cca052038efb8f47f78f57d09f3cff" "f91b6afd5f2ae04ee9a2c19109a3a4a36f7659e6")
 CROS_WORKON_INCREMENTAL_BUILD=1
 CROS_WORKON_LOCALNAME="platform2"
 CROS_WORKON_PROJECT="chromiumos/platform2"
@@ -23,7 +25,7 @@ HOMEPAGE="https://chromium.googlesource.com/chromiumos/platform2/+/HEAD/login_ma
 SRC_URI=""
 
 LICENSE="BSD-Google"
-KEYWORDS="~*"
+KEYWORDS="*"
 IUSE="apply_landlock_policy arc_adb_sideloading cheets flex_id fuzzer
 	+apply_landlock_policy +login_apply_no_new_privs login_enable_crosh_sudo systemd test
 	user_session_isolation"

@@ -1,0 +1,24 @@
+#media-libs/mesa-llvmpipe egl gles2 shared-glapi
+media-libs/mesa-reven egl gles2 shared-glapi -gbm
+
+
+hromeos-base/diagnostics mesa_reven
+
+# Turn off 802.11v Wireless Network Management as it makes broadcom wireless flaky
+net-wireless/wpa_supplicant-cros -wnm
+
+net-wireless/bluez hid2hci
+
+# Enable split debug to avoid relocation overflows, b/279487992.
+chromeos-base/chromeos-chrome debug_fission
+
+# chromeos-base/vboot_reference tpm tp
+
+sys-kernel/chromeos-kernel-5_15 vtconsole
+
+media-libs/waffle gbm
+
+#chromeos-base/libhwsec -tpm
+
+# to have amd64-generic use flags on chromeos-chrome, uncomment the following:
+#chromeos-base/chromeos-chrome accessibility afdo_use autotest bluetooth build_tests buildcheck chrome_debug chrome_remoting cros-debug debug_fission dwarf5 fonts highdpi libcxx nacl oobe_config opengles runhooks vaapi xkbcommon -afdo_generate -afdo_verify -app_shell -arc_hw_oemcrypto -asan -cdm_factory_daemon -cfi -cfi_diag -cfi_recover -cfm -chrome_cfi_thinlto -chrome_dcheck -chrome_debug_tests -chrome_internal -chrome_media -clang_tidy -component_build -compressed_ash -coverage -feature_management -fuzzer -hevc_codec -hw_details -intel_oemcrypto -internal_gles_conform -libinput -mojo -msan (-neon) -opengl -optee_oemcrypto -protected_av1 -strict_toolchain_checks -subpixel_rendering -thinlto -touchview -tpm_dynamic -tsan -ubsan -v4l2_codec -v4lplugin -verbose -vtable_verify

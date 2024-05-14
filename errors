@@ -1,0 +1,275 @@
+days ago.
+19:11:37.970: INFO: Clearing shadow-utils lockfiles under /build/glimmer
+19:11:37.971: INFO: Rebuilding Portage cache.
+19:11:37.971: INFO: Rebuilding Portage dependency cache.
+19:11:37.971: INFO: run: parallel_emerge --regen --quiet '--sysroot=/build/glimmer' '--jobs=16'
+19:11:38.050: INFO: Running: emerge --regen --quiet --sysroot /build/glimmer --root-deps '--jobs=16'
+19:11:39.297: INFO: service.sysroot.BuildPackages.RegenPortageCache: 1.326s
+19:11:39.297: INFO: Cleaning stale binpkgs.
+19:11:39.425: INFO: run: /build/glimmer/build/bin/eclean -d -e /tmp/tmp6kovr9oa packages
+cli --exclude option
+ * Building file list for packages cleaning...
+ * Your packages directory was already clean.
+19:11:40.094: INFO: Detected cros_workon modified packages: 
+19:11:40.095: INFO: Starting reverse dependency calculations...
+19:11:40.095: INFO: run: sudo 'CROS_CACHEDIR=/mnt/host/source/.cache' -- /mnt/host/source/chromite/bin/parallel_emerge '--sysroot=/build/glimmer' '--root=/build/glimmer' -uDNv '--backtrack=10' --newrepo --with-test-deps y '--force-remote-binary=chromeos-base/chromeos-chrome' '--force-remote-binary=chromeos-base/chrome-icu' --getbinpkg --with-bdeps y --usepkg '--jobs=16' --pretend --columns '--reinstall-atoms=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test' '--usepkg-exclude=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test' virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test
+19:12:51.614: INFO: service.sysroot.GetForceLocalBuildPackages: 1m11.726s
+19:12:51.615: INFO: service.sysroot.BuildPackages: 1m59.887s
+19:12:51.616: INFO: Elapsed time (cros build-packages): 3m24.215s
+19:12:51.617: ERROR: cros build-packages failed before completing.
+19:12:51.617: ERROR: return code: 1; command: sudo 'CROS_CACHEDIR=/mnt/host/source/.cache' -- /mnt/host/source/chromite/bin/parallel_emerge '--sysroot=/build/glimmer' '--root=/build/glimmer' -uDNv '--backtrack=10' --newrepo --with-test-deps y '--force-remote-binary=chromeos-base/chromeos-chrome' '--force-remote-binary=chromeos-base/chrome-icu' --getbinpkg --with-bdeps y --usepkg '--jobs=16' --pretend --columns '--reinstall-atoms=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test' '--usepkg-exclude=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test' virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test
+19:11:40.176: INFO: Running: emerge -uDNv '--backtrack=10' --newrepo --with-test-deps y --getbinpkg --with-bdeps y --usepkg --pretend --columns '--reinstall-atoms=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test' '--usepkg-exclude=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test' virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test --sysroot /build/glimmer --root /build/glimmer '--useoldpkg-atoms=chromeos-base/chromeos-chrome chromeos-base/chrome-icu' --root-deps '--jobs=16'
+
+!!! Multiple package instances within a single package slot have been pulled
+!!! into the dependency graph, resulting in a slot conflict:
+
+chromeos-base/libchrome:0 for /build/glimmer/
+
+  (chromeos-base/libchrome-0.0.1-r914:0/0.0.1-r914::chromiumos, installed in '/build/glimmer/') pulled in by
+    >=chromeos-base/libchrome-0.0.1-r912:0/0.0.1-r914=[cros-debug] required by (chromeos-base/mems_setup-0.0.1-r910:0/0.0.1-r910::chromiumos, installed in '/build/glimmer/')
+                                        ^^^^^^^^^^^^^^                                                                                                                        
+    (and 81 more with the same problem)
+
+  (chromeos-base/libchrome-0.0.1-r912:0/0.0.1-r912::chromiumos, binary scheduled for merge to '/build/glimmer/') pulled in by
+    >=chromeos-base/libchrome-0.0.1-r912:0/0.0.1-r912=[cros-debug] required by (chromeos-base/bootid-logger-0.0.1-r399:0/0::chromiumos, binary scheduled for merge to '/build/glimmer/')
+                                        ^^^^^^^^^^^^^^                                                                                                                                   
+    (and 22 more with the same problem)
+
+NOTE: Use the '--verbose-conflicts' option to display parents omitted above
+
+It may be possible to solve this problem by using package.mask to
+prevent one of those packages from being selected. However, it is also
+possible that conflicting dependencies exist such that they are
+impossible to satisfy simultaneously.  If such a conflict exists in
+the dependencies of two different packages, then those packages can
+not be installed simultaneously. You may want to try a larger value of
+the --backtrack option, such as --backtrack=30, in order to see if
+that will solve this conflict automatically.
+
+For more information, see MASKED PACKAGES section in the emerge man
+page or refer to the Gentoo Handbook.
+
+
+!!! The following binary packages have been ignored due to non matching USE:
+
+    =virtual/target-chromium-os-1-r274 biod -dptf -iwlwifi_rescan kvm_host -mmc -tpm tpm2 # for /build/glimmer/
+    =chromeos-base/chromeos-login-0.0.2-r5654 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/chromeos-init-0.0.26-r5093 tpm2 vivid # for /build/glimmer/
+    =chromeos-base/chromeos-installer-0.0.3-r4131 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/debugd-0.0.1-r3759 -tpm # for /build/glimmer/
+    =chromeos-base/diagnostics-0.0.1-r2451 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/hardware_verifier-0.0.1-r992 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/runtime_probe-0.0.1-r1339 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/power_manager-0.0.2-r5098 has_chromeos_config_bsp -keyboard_includes_side_buttons legacy_power_button touchpad_wakeup # for /build/glimmer/
+    =chromeos-base/biod-0.0.1-r3037 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/trunks-0.0.1-r3692 tpm2_simulator # for /build/glimmer/
+    =chromeos-base/shill-0.0.6-r4591 -tpm # for /build/glimmer/
+    =media-sound/adhd-0.0.7-r3449 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/bootlockbox-0.0.1-r388 -tpm tpm2 # for /build/glimmer/
+    =chromeos-base/device_management-0.0.1-r156 -tpm tpm2 # for /build/glimmer/
+    =chromeos-base/cros-camera-0.0.1-r1917 -march_silvermont march_x86-64 # for /build/glimmer/
+    =chromeos-base/oobe_config-0.0.1-r1100 -tpm tpm2 # for /build/glimmer/
+    =chromeos-base/libhwsec-0.0.1-r997 -tpm tpm2 # for /build/glimmer/
+    =chromeos-base/patchpanel-0.0.2-r1261 kvm_host # for /build/glimmer/
+    =media-libs/cros-camera-hal-usb-0.0.1-r1654 -march_silvermont march_x86-64 # for /build/glimmer/
+    =chromeos-base/tpm_manager-0.0.1-r3152 -tpm tpm2 tpm2_simulator # for /build/glimmer/
+    =chromeos-base/attestation-0.0.1-r4212 -tpm tpm2 tpm2_simulator # for /build/glimmer/
+    =chromeos-base/cryptohome-0.0.2-r5567 direncription_allow_v2 has_chromeos_config_bsp -tpm tpm2 tpm2_simulator vtpm_proxy # for /build/glimmer/
+    =sys-fs/ecryptfs-utils-108-r5 -tpm # for /build/glimmer/
+
+NOTE: The --binpkg-respect-use=n option will prevent emerge
+      from ignoring these binary packages if possible.
+      Using --binpkg-respect-use=y will silence this warning.
+
+!!! All ebuilds that could satisfy "chromeos-base/chromeos-activate-date-glimmer" for /build/glimmer/ have been masked.
+!!! One of the following masked packages is required to complete your request:
+- chromeos-base/chromeos-activate-date-glimmer-0.0.1-r4::glimmer-private (masked by: EAPI 4)
+- chromeos-base/chromeos-activate-date-glimmer-0.0.1::glimmer-private (masked by: EAPI 4)
+
+(dependency required by "virtual/chromeos-activate-date-2-r2::glimmer-private" [ebuild])
+(dependency required by "chromeos-base/vpd-0.0.1-r247::chromiumos[-cros_host]" [installed])
+(dependency required by "chromeos-base/chromeos-login-0.0.2-r5654::chromiumos" [ebuild])
+(dependency required by "chromeos-base/bootcomplete-login-0.0.1-r4::chromiumos" [binary])
+(dependency required by "virtual/chromeos-bootcomplete-1-r3::chromiumos" [binary])
+(dependency required by "chromeos-base/chromeos-init-0.0.26-r5093::chromiumos" [ebuild])
+(dependency required by "chromeos-base/chromeos-trim-0.0.1-r1946::chromiumos" [binary])
+(dependency required by "virtual/target-chromium-os-1-r274::chromiumos[trim_supported]" [ebuild])
+(dependency required by "virtual/target-os-1-r5::chromiumos" [ebuild])
+(dependency required by "virtual/target-os" [argument])
+For more information, see the MASKED PACKAGES section in the emerge
+man page or refer to the Gentoo Handbook.
+
+
+19:11:41.479: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' cp -v -- gs://chromeos-prebuilt/host/amd64/amd64-host/chroot-2023.11.30.032519/packages/Packages /tmp/tmpb4zvcwv0.tmp
+
+These are the packages that would be merged, in order:
+
+Calculating dependencies  .... ... . ...... .. ... done in 0:01:06.474533
+
+cmd=['sudo', 'CROS_CACHEDIR=/mnt/host/source/.cache', '--', PosixPath('/mnt/host/source/chromite/bin/parallel_emerge'), '--sysroot=/build/glimmer', '--root=/build/glimmer', '-uDNv', '--backtrack=10', '--newrepo', '--with-test-deps', 'y', '--force-remote-binary=chromeos-base/chromeos-chrome', '--force-remote-binary=chromeos-base/chrome-icu', '--getbinpkg', '--with-bdeps', 'y', '--usepkg', '--jobs=16', '--pretend', '--columns', '--reinstall-atoms=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test', '--usepkg-exclude=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test', 'virtual/target-os', 'virtual/target-os-dev', 'virtual/target-os-factory', 'virtual/target-os-factory-shim', 'virtual/target-os-test']
+19:12:51.617: ERROR: (Re-run with --debug for more details.)
+user@void:~/chromiumos$ cros build-package --board=glimmer --jobs=16 --no-withautotest --verbose 
+usage: cros [-h]
+            [--log-level {fatal,critical,error,warning,notice,info,debug}]
+            [--log-format LOG_FORMAT] [-v] [--debug] [--color]
+            [--no-color] [--log-telemetry] [--cache-dir CACHE_DIR]
+            {analyze-image,ap,build-image,build-packages,buildresult,chrome-sdk,cidbcreds,clean,clean-outdated-pkgs,cp,debug,deploy,fix,flash,format,fwget,lint,query,shell,stage,telemetry,try,tryjob,umount,unmount,vm,workon,help}
+            ...
+cros: error: argument subcommand: invalid choice: 'build-package' (choose from 'analyze-image', 'ap', 'build-image', 'build-packages', 'buildresult', 'chrome-sdk', 'cidbcreds', 'clean', 'clean-outdated-pkgs', 'cp', 'debug', 'deploy', 'fix', 'flash', 'format', 'fwget', 'lint', 'query', 'shell', 'stage', 'telemetry', 'try', 'tryjob', 'umount', 'unmount', 'vm', 'workon', 'help')
+user@void:~/chromiumos$ cros build-packages --board=glimmer --jobs=16 --no-withautotest --verbose --skip-chroot-upgrade --skip-toolchain-update  
+19:16:55.760: INFO: Elapsed time (cros build-packages): 0.000s
+19:16:55.761: INFO: run: /home/user/chromiumos/chromite/bin/cros_sdk -- /mnt/host/source/chromite/bin/cros build-packages '--board=glimmer' '--jobs=16' --no-withautotest --verbose --skip-chroot-upgrade --skip-toolchain-update in /home/user/chromiumos
+sudo: unable to resolve host void: No address associated with hostname
+19:16:56.726: WARNING: Invalid type NoneType for attribute 'manifest_change_id' value. Expected one of ['bool', 'str', 'bytes', 'int', 'float'] or a sequence of those types
+19:16:56.743: WARNING: please check your /etc/hosts file; resolving your hostname (void) failed: [Errno -5] No address associated with hostname
+19:16:56.761: INFO: Creating sysroot directories.
+19:16:56.773: INFO: Installing configurations into sysroot.
+19:16:56.808: INFO: Setting up portage in the sysroot.
+19:16:57.218: INFO: Selecting profile: /mnt/host/source/src/private-overlays/overlay-glimmer/profiles/base for /build/glimmer
+19:16:57.273: INFO: Updating toolchain.
+19:16:57.655: INFO: Cross-compiler already up to date. Nothing to do.
+19:16:57.661: INFO: run: sudo --preserve-env 'CROS_CACHEDIR=/mnt/host/source/.cache' -- cros clean-outdated-pkgs '--board=glimmer'
+19:16:58: NOTICE: Installed packages in glimmer: 1095
+19:16:58: NOTICE: Outdated packages in glimmer: 0
+19:16:58.306: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic/postsubmit-R121-15698.0.0-59216-8762724217663114529/packages/Packages
+19:17:04.465: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic/postsubmit-R121-15698.0.0-59216-8762724217663114529/packages was created 14 days ago.
+19:17:04.465: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic/postsubmit-R121-15698.0.0-59225-8762694921128048769/packages/Packages
+19:17:05.378: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic/postsubmit-R121-15698.0.0-59225-8762694921128048769/packages was created 13 days ago.
+19:17:05.379: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic/postsubmit-R121-15698.0.0-59228-8762689440636528497/packages/Packages
+19:17:06.301: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic/postsubmit-R121-15698.0.0-59228-8762689440636528497/packages was created 13 days ago.
+19:17:06.302: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic/postsubmit-R121-15698.0.0-59230-8762685583889145457/packages/Packages
+19:17:07.227: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic/postsubmit-R121-15698.0.0-59230-8762685583889145457/packages was created 13 days ago.
+19:17:07.228: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic-kernel-5_10/cq-R121-15696.0.0-59122-8762888162980089473/packages/Packages
+19:17:08.144: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic-kernel-5_10/cq-R121-15696.0.0-59122-8762888162980089473/packages was created 15 days ago.
+19:17:08.144: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic-kernel-4_19/cq-R121-15696.0.0-59122-8762888162902506833/packages/Packages
+19:17:09.088: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic-kernel-4_19/cq-R121-15696.0.0-59122-8762888162902506833/packages was created 15 days ago.
+19:17:09.088: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic-kernel-4_14/cq-R121-15696.0.0-59122-8762888162629033745/packages/Packages
+19:17:09.988: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic-kernel-4_14/cq-R121-15696.0.0-59122-8762888162629033745/packages was created 15 days ago.
+19:17:09.988: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic-kernel-6_1/cq-R121-15696.0.0-59122-8762888164095448913/packages/Packages
+19:17:10.926: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic-kernel-6_1/cq-R121-15696.0.0-59122-8762888164095448913/packages was created 15 days ago.
+19:17:10.927: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic-kernel-5_4/cq-R121-15696.0.0-59122-8762888163899124977/packages/Packages
+19:17:11.832: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic-kernel-5_4/cq-R121-15696.0.0-59122-8762888163899124977/packages was created 15 days ago.
+19:17:11.833: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic-kernel-5_15/cq-R121-15696.0.0-59122-8762888163277329617/packages/Packages
+19:17:12.757: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic-kernel-5_15/cq-R121-15696.0.0-59122-8762888163277329617/packages was created 15 days ago.
+19:17:12.758: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic-kernel-6_6/cq-R121-15696.0.0-59122-8762888164457600513/packages/Packages
+19:17:13.784: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic-kernel-6_6/cq-R121-15696.0.0-59122-8762888164457600513/packages was created 15 days ago.
+19:17:13.784: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic-ubsan/cq-R121-15696.0.0-59122-8762888172433769617/packages/Packages
+19:17:14.702: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic-ubsan/cq-R121-15696.0.0-59122-8762888172433769617/packages was created 15 days ago.
+19:17:14.702: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic-asan/cq-R121-15696.0.0-59122-8762888172606115681/packages/Packages
+19:17:15.621: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic-asan/cq-R121-15696.0.0-59122-8762888172606115681/packages was created 15 days ago.
+19:17:15.622: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic/cq-R121-15696.0.0-59122-8762888172598841681/packages/Packages
+19:17:16.539: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic/cq-R121-15696.0.0-59122-8762888172598841681/packages was created 15 days ago.
+19:17:16.540: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic/cq-R121-15696.0.0-59122-8762888172578300961/packages/Packages
+19:17:17.461: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic/cq-R121-15696.0.0-59122-8762888172578300961/packages was created 15 days ago.
+19:17:17.462: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic/cq-R121-15696.0.0-59122-8762888172541688913/packages/Packages
+19:17:18.385: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic/cq-R121-15696.0.0-59122-8762888172541688913/packages was created 15 days ago.
+19:17:18.386: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic/cq-R121-15696.0.0-59122-8762888172460729169/packages/Packages
+19:17:19.309: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic/cq-R121-15696.0.0-59122-8762888172460729169/packages was created 15 days ago.
+19:17:19.309: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic-vm-optimized/cq-R121-15696.0.0-59122-8762888172434816753/packages/Packages
+19:17:20.229: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic-vm-optimized/cq-R121-15696.0.0-59122-8762888172434816753/packages was created 15 days ago.
+19:17:20.230: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' stat -- gs://chromeos-prebuilt/board/amd64-generic/cq-R121-15696.0.0-59122-8762888172508462961/packages/Packages
+19:17:21.154: INFO: PORTAGE_BINHOST gs://chromeos-prebuilt/board/amd64-generic/cq-R121-15696.0.0-59122-8762888172508462961/packages was created 15 days ago.
+19:17:21.155: INFO: Clearing shadow-utils lockfiles under /build/glimmer
+19:17:21.155: INFO: Rebuilding Portage cache.
+19:17:21.156: INFO: Rebuilding Portage dependency cache.
+19:17:21.156: INFO: run: parallel_emerge --regen --quiet '--sysroot=/build/glimmer' '--jobs=16'
+19:17:21.230: INFO: Running: emerge --regen --quiet --sysroot /build/glimmer --root-deps '--jobs=16'
+19:17:22.356: INFO: service.sysroot.BuildPackages.RegenPortageCache: 1.200s
+19:17:22.356: INFO: Cleaning stale binpkgs.
+19:17:22.440: INFO: run: /build/glimmer/build/bin/eclean -d -e /tmp/tmp5rrwhqzy packages
+cli --exclude option
+ * Building file list for packages cleaning...
+ * Your packages directory was already clean.
+19:17:22.983: INFO: Detected cros_workon modified packages: 
+19:17:22.983: INFO: Starting reverse dependency calculations...
+19:17:22.984: INFO: run: sudo 'CROS_CACHEDIR=/mnt/host/source/.cache' -- /mnt/host/source/chromite/bin/parallel_emerge '--sysroot=/build/glimmer' '--root=/build/glimmer' -uDNv '--backtrack=10' --newrepo --with-test-deps y '--force-remote-binary=chromeos-base/chromeos-chrome' '--force-remote-binary=chromeos-base/chrome-icu' --getbinpkg --with-bdeps y --usepkg '--jobs=16' --pretend --columns '--reinstall-atoms=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test' '--usepkg-exclude=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test' virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test
+19:18:28.085: INFO: service.sysroot.GetForceLocalBuildPackages: 1m5.269s
+19:18:28.086: INFO: service.sysroot.BuildPackages: 1m30.425s
+19:18:28.088: INFO: Elapsed time (cros build-packages): 1m31.476s
+19:18:28.088: ERROR: cros build-packages failed before completing.
+19:18:28.088: ERROR: return code: 1; command: sudo 'CROS_CACHEDIR=/mnt/host/source/.cache' -- /mnt/host/source/chromite/bin/parallel_emerge '--sysroot=/build/glimmer' '--root=/build/glimmer' -uDNv '--backtrack=10' --newrepo --with-test-deps y '--force-remote-binary=chromeos-base/chromeos-chrome' '--force-remote-binary=chromeos-base/chrome-icu' --getbinpkg --with-bdeps y --usepkg '--jobs=16' --pretend --columns '--reinstall-atoms=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test' '--usepkg-exclude=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test' virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test
+19:17:23.056: INFO: Running: emerge -uDNv '--backtrack=10' --newrepo --with-test-deps y --getbinpkg --with-bdeps y --usepkg --pretend --columns '--reinstall-atoms=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test' '--usepkg-exclude=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test' virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test --sysroot /build/glimmer --root /build/glimmer '--useoldpkg-atoms=chromeos-base/chromeos-chrome chromeos-base/chrome-icu' --root-deps '--jobs=16'
+
+!!! Multiple package instances within a single package slot have been pulled
+!!! into the dependency graph, resulting in a slot conflict:
+
+chromeos-base/libchrome:0 for /build/glimmer/
+
+  (chromeos-base/libchrome-0.0.1-r914:0/0.0.1-r914::chromiumos, installed in '/build/glimmer/') pulled in by
+    >=chromeos-base/libchrome-0.0.1-r912:0/0.0.1-r914=[cros-debug] required by (chromeos-base/run_oci-0.0.1-r1425:0/0::chromiumos, installed in '/build/glimmer/')
+                                        ^^^^^^^^^^^^^^                                                                                                             
+    (and 82 more with the same problem)
+
+  (chromeos-base/libchrome-0.0.1-r912:0/0.0.1-r912::chromiumos, binary scheduled for merge to '/build/glimmer/') pulled in by
+    >=chromeos-base/libchrome-0.0.1-r912:0/0.0.1-r912=[cros-debug] required by (chromeos-base/runtime_probe-client-0.0.1-r284:0/0.0.1-r284::chromiumos, binary scheduled for merge to '/build/glimmer/')
+                                        ^^^^^^^^^^^^^^                                                                                                                                                   
+    (and 22 more with the same problem)
+
+NOTE: Use the '--verbose-conflicts' option to display parents omitted above
+
+It may be possible to solve this problem by using package.mask to
+prevent one of those packages from being selected. However, it is also
+possible that conflicting dependencies exist such that they are
+impossible to satisfy simultaneously.  If such a conflict exists in
+the dependencies of two different packages, then those packages can
+not be installed simultaneously. You may want to try a larger value of
+the --backtrack option, such as --backtrack=30, in order to see if
+that will solve this conflict automatically.
+
+For more information, see MASKED PACKAGES section in the emerge man
+page or refer to the Gentoo Handbook.
+
+
+!!! The following binary packages have been ignored due to non matching USE:
+
+    =virtual/target-chromium-os-1-r274 biod -dptf -iwlwifi_rescan kvm_host -mmc -tpm tpm2 # for /build/glimmer/
+    =chromeos-base/chromeos-login-0.0.2-r5654 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/chromeos-init-0.0.26-r5093 tpm2 vivid # for /build/glimmer/
+    =chromeos-base/chromeos-installer-0.0.3-r4131 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/debugd-0.0.1-r3759 -tpm # for /build/glimmer/
+    =chromeos-base/diagnostics-0.0.1-r2451 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/hardware_verifier-0.0.1-r992 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/runtime_probe-0.0.1-r1339 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/power_manager-0.0.2-r5098 has_chromeos_config_bsp -keyboard_includes_side_buttons legacy_power_button touchpad_wakeup # for /build/glimmer/
+    =chromeos-base/biod-0.0.1-r3037 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/trunks-0.0.1-r3692 tpm2_simulator # for /build/glimmer/
+    =chromeos-base/shill-0.0.6-r4591 -tpm # for /build/glimmer/
+    =media-sound/adhd-0.0.7-r3449 has_chromeos_config_bsp # for /build/glimmer/
+    =chromeos-base/bootlockbox-0.0.1-r388 -tpm tpm2 # for /build/glimmer/
+    =chromeos-base/device_management-0.0.1-r156 -tpm tpm2 # for /build/glimmer/
+    =chromeos-base/cros-camera-0.0.1-r1917 -march_silvermont march_x86-64 # for /build/glimmer/
+    =chromeos-base/oobe_config-0.0.1-r1100 -tpm tpm2 # for /build/glimmer/
+    =chromeos-base/libhwsec-0.0.1-r997 -tpm tpm2 # for /build/glimmer/
+    =chromeos-base/patchpanel-0.0.2-r1261 kvm_host # for /build/glimmer/
+    =media-libs/cros-camera-hal-usb-0.0.1-r1654 -march_silvermont march_x86-64 # for /build/glimmer/
+    =chromeos-base/tpm_manager-0.0.1-r3152 -tpm tpm2 tpm2_simulator # for /build/glimmer/
+    =chromeos-base/attestation-0.0.1-r4212 -tpm tpm2 tpm2_simulator # for /build/glimmer/
+    =chromeos-base/cryptohome-0.0.2-r5567 direncription_allow_v2 has_chromeos_config_bsp -tpm tpm2 tpm2_simulator vtpm_proxy # for /build/glimmer/
+    =sys-fs/ecryptfs-utils-108-r5 -tpm # for /build/glimmer/
+
+NOTE: The --binpkg-respect-use=n option will prevent emerge
+      from ignoring these binary packages if possible.
+      Using --binpkg-respect-use=y will silence this warning.
+
+emerge: there are no ebuilds to satisfy "chromeos-base/chromeos-accelerometer-init" for /build/glimmer/.
+(dependency required by "chromeos-base/chromeos-bsp-glimmer-0.0.1-r31::glimmer-private" [ebuild])
+(dependency required by "virtual/chromeos-bsp-2-r1::glimmer-private" [ebuild])
+(dependency required by "virtual/target-chromium-os-1-r274::chromiumos" [ebuild])
+(dependency required by "virtual/target-os-1-r5::chromiumos" [ebuild])
+(dependency required by "virtual/target-os" [argument])
+
+19:17:24.196: INFO: run: /usr/lib/python-exec/python3.8/python3 /mnt/host/source/.cache/common/gsutil_5.23.tar.gz/gsutil/gsutil -o 'Boto:num_retries=10' cp -v -- gs://chromeos-prebuilt/host/amd64/amd64-host/chroot-2023.11.30.032519/packages/Packages /tmp/tmpb8izc0et.tmp
+
+These are the packages that would be merged, in order:
+
+Calculating dependencies  ........ ... done in 0:00:59.898375
+
+cmd=['sudo', 'CROS_CACHEDIR=/mnt/host/source/.cache', '--', PosixPath('/mnt/host/source/chromite/bin/parallel_emerge'), '--sysroot=/build/glimmer', '--root=/build/glimmer', '-uDNv', '--backtrack=10', '--newrepo', '--with-test-deps', 'y', '--force-remote-binary=chromeos-base/chromeos-chrome', '--force-remote-binary=chromeos-base/chrome-icu', '--getbinpkg', '--with-bdeps', 'y', '--usepkg', '--jobs=16', '--pretend', '--columns', '--reinstall-atoms=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test', '--usepkg-exclude=virtual/target-os virtual/target-os-dev virtual/target-os-factory virtual/target-os-factory-shim virtual/target-os-test', 'virtual/target-os', 'virtual/target-os-dev', 'virtual/target-os-factory', 'virtual/target-os-factory-shim', 'virtual/target-os-test']
+19:18:28.088: ERROR: (Re-run with --debug for more details.)
+user@void:~/chromiumos$ cros build-packages --board=glimmer --jobs=16 --backtrack=50  --no-withautotest --verbose --skip-chroot-upgrade --skip-tool
+chain-update
+19:20:09.021: INFO: Elapsed time (cros build-packages): 0.000s
+19:20:09.022: INFO: run: /home/user/chromiumos/chromite/bin/cros_sdk -- /mnt/host/source/chromite/bin/cros build-packages '--board=glimmer' '--jobs=16' '--backtrack=50' --no-withautotest --verbose --skip-chroot-upgrade --skip-toolchain-update in /home/user/chromiumos
+sudo: unable to resolve host void: No address associated with hostname
+19:20:09.980: WARNING: Invalid type NoneType for attribute 'manifest_change_id' value. Expected one of ['bool', 'str', 'bytes', 'int', 'float'] or a sequence of those types
+19:20:09.994: WARNING: pleas

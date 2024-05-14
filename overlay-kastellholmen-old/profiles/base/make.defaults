@@ -13,7 +13,7 @@ USE=""
 #CHROMEOS_KERNEL_CONFIG="/mnt/host/source/src/private-overlays/overlay-kastellholmen/kconfigs/flex-linux-5_10.config"
 
 # Reven + yocto via merge_config.sh
-#CHROMEOS_KERNEL_CONFIG="/mnt/host/source/src/private-overlays/overlay-kastellholmen/kconfigs/chromeos-6.6-full.config"
+CHROMEOS_KERNEL_CONFIG="/mnt/host/source/src/private-overlays/overlay-kastellholmen/kconfigs/chromeos-6.6-full.config"
 
 CHROMEOS_KERNEL_CONFIG="/mnt/host/source/src/private-overlays/overlay-kastellholmen/kconfigs/chromeos-flex-5.15.config"
 #CHROMEOS_KERNEL_CONFIG="/mnt/host/source/src/private-overlays/overlay-kastellholmen/kconfigs/chromeos-6.6-allmodconfig.config"
@@ -37,7 +37,7 @@ USE="${USE} os_install_service"
 USE="${USE} flexor"
 
 # Use kernel 5.15
-USE="${USE} -kernel-4_14 -kernel-4_19 -kernel-5_4 -kernel-5_10 kernel-5_15 -kernel-6_6"
+USE="${USE} -kernel-4_14 -kernel-4_19 -kernel-5_4 -kernel-5_10 -kernel-5_15 kernel-6_6"
 
 # Include the kernel in the base image.
 USE="${USE} include_vmlinuz"
@@ -174,9 +174,6 @@ USE="${USE} -secagent"
 
 # assuming debug daemon
 USE="${USE} -debugd"
-
-# building floss fails
-USE="${USE} -floss"
 
 # bootid-stuff (fails)
 #USE="${USE} -syslog"
